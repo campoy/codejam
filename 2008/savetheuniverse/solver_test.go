@@ -37,7 +37,7 @@ func TestSolve(t *testing.T) {
 	}
 }
 
-func ExampleSolve() {
+func ExampleReadAndSolve() {
 	r := strings.NewReader(strings.Join([]string{
 		"2",
 		"5",
