@@ -9,28 +9,24 @@ import (
 
 func TestSolve(t *testing.T) {
 	tests := []struct {
-		in  Input
-		n   int
-		err error
+		engines, queries []string
+		n                int
+		err              error
 	}{
 		{
-			in: Input{
-				Engines: []string{"a"},
-				Queries: []string{"a"},
-			},
-			err: fmt.Errorf("no solution possible"),
+			engines: []string{"a"},
+			queries: []string{"a"},
+			err:     fmt.Errorf("no solution possible"),
 		},
 		{
-			in: Input{
-				Engines: []string{"a", "b"},
-				Queries: []string{"a", "b"},
-			},
-			n: 1,
+			engines: []string{"a", "b"},
+			queries: []string{"a", "b"},
+			n:       1,
 		},
 	}
 
 	for _, test := range tests {
-		n, err := Solve(test.in)
+		n, err := Solve(test.engines, test.queries)
 		if !similarError(test.err, err) {
 			t.Errorf("expected error %v, got %v", test.err, err)
 			continue
