@@ -6,4 +6,4 @@ import (
 	"github.com/campoy/codejam/tester"
 )
 
-func TestMagicTrick(t *testing.T) { tester.Do(MagicTrick) }
+func TestMagicTrick(t *testing.T) { tester.Do(Run) }

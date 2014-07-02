@@ -49,7 +49,7 @@ func (s *Scanner) StringsN(n int) []string {
 func (s *Scanner) atoi(txt string) int {
 	v, err := strconv.Atoi(txt)
 	if err != nil {
-		log.Fatalf("[l:%v] not a number: %v", s.line, err)
+		log.Fatalf("[l:%v] parse int: %v", s.line, err)
 	}
 	return v
 }
@@ -60,14 +60,42 @@ func (s *Scanner) Int() int {
 
 func (s *Scanner) Ints() []int {
 	res := []int{}
-	for _, f := range s.Strings() {
-		res = append(res, s.atoi(f))
+	for _, v := range s.Strings() {
+		res = append(res, s.atoi(v))
 	}
 	return res
 }
 
 func (s *Scanner) IntsN(n int) []int {
 	res := s.Ints()
+	if len(res) != n {
+		log.Fatalf("[l:%v] expected %v elements, got %v", s.line, n, len(res))
+	}
+	return res
+}
+
+func (s *Scanner) atof(txt string) float64 {
+	v, err := strconv.ParseFloat(txt, 64)
+	if err != nil {
+		log.Fatalf("[l:%v] parse float: %v", s.line, err)
+	}
+	return v
+}
+
+func (s *Scanner) Float() float64 {
+	return s.atof(s.String())
+}
+
+func (s *Scanner) Floats() []float64 {
+	res := []float64{}
+	for _, v := range s.Strings() {
+		res = append(res, s.atof(v))
+	}
+	return res
+}
+
+func (s *Scanner) FloatsN(n int) []float64 {
+	res := s.Floats()
 	if len(res) != n {
 		log.Fatalf("[l:%v] expected %v elements, got %v", s.line, n, len(res))
 	}

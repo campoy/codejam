@@ -7,7 +7,7 @@ import (
 	"github.com/campoy/codejam/input"
 )
 
-func MagicTrick(w io.Writer, r io.Reader) {
+func Run(w io.Writer, r io.Reader) {
 	s := input.NewScanner(r)
 
 	t := s.Int()
